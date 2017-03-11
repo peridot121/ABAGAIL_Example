@@ -209,7 +209,7 @@ public class CountOnesOptimizationTest {
     public static void main(String[] args) {
 
         ConcurrentHashMap<String, String> other_params = new ConcurrentHashMap<>();
-        other_params.put("output_folder","Optimization_Results");
+        other_params.put("output_folder","Optimization_Results-CountOnes");
         int num_runs = 10;
 
         //Count Ones Test

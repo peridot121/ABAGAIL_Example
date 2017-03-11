@@ -257,7 +257,7 @@ public class KnapsackOptimizationTest {
     public static void main(String[] args) {
 
         ConcurrentHashMap<String, String> other_params = new ConcurrentHashMap<>();
-        other_params.put("output_folder","Optimization_Results");
+        other_params.put("output_folder","Optimization_Results-Knapsack");
         int num_runs = 10;
 
         int[] N = new int[] {20, 40, 60, 80, 100};
