@@ -8,20 +8,21 @@ import matplotlib.pyplot as plt
 #df.ix[(df.algorithm == 'MIMIC200') & (df.iterations == 1)]['optimal']
 
 if __name__=="__main__":
-    if sys.argv[1] == 'time':
+    target = sys.argv[1]
+    if target == 'time':
         f = './time.csv'
         scatter = False
         lines = True
         title = 'Four Peaks Time Elapsed'
-    elif sys.argv[1] == 'functions':
+    elif target == 'functions':
         f = './functions.csv'
         scatter = False
         lines = True
         title = 'Four Peaks Function Calls'
     else:
         f = './optimal.csv'
-        scatter = True
-        lines = False
+        scatter = False
+        lines = True
         title = 'Four Peaks Fitness'
 
     pd.set_option('display.max_row', 1000)
@@ -38,8 +39,11 @@ if __name__=="__main__":
               'SA95': { 'marker': '>', 'color': 'Blue'},
             }
     xval = 'iterations'
-    yval = sys.argv[1]
+    yval = target
     for algorithm in ['RHC', 'GAHighPop', 'GALowPop', 'MIMIC200', 'MIMIC50', 'SA55', 'SA75', 'SA95']:
+        for iter in df['iterations'].unique():
+            df.ix[(df.algorithm == algorithm) & (df.iterations == iter), target] = df.ix[(df.algorithm == algorithm) & (df.iterations == iter)][target].mean()
+
         if lines is True:
             plt.plot(df[xval][df['algorithm'] == algorithm],
                      df[yval][df['algorithm'] == algorithm],
