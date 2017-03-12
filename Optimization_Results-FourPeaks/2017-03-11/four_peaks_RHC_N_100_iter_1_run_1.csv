@@ -1,8 +1,8 @@
-0.0
-0.0
+2.0
+2.0
 
 Problem: four_peaks
 Algorithm: RHC
-Time Elapse: 314.0
-Optimal Value: 0.0
+Time Elapse: 41.0
+Optimal Value: 2.0
 Total function call: 4

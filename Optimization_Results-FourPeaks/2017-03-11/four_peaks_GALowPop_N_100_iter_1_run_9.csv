@@ -1,8 +1,8 @@
-1.64
-2.675
+1.85
+3.33
 
 Problem: four_peaks
 Algorithm: GALowPop
-Time Elapse: 44.0
-Optimal Value: 7.0
-Total function call: 412
+Time Elapse: 3.0
+Optimal Value: 8.0
+Total function call: 256

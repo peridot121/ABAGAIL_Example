@@ -1,4 +1,0 @@
-    df_temp = (df['N'] - df['optimal']).abs()
-    df_temp.rename(columns={"difference"})
-    df = df.join(pd.DataFrame(df_temp, columns = {"difference"}))
-EOF

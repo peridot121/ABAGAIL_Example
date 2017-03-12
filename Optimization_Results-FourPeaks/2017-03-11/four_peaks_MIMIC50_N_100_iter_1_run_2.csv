@@ -1,8 +1,8 @@
 3.0
-6.0
+4.0
 
 Problem: four_peaks
 Algorithm: MIMIC50
-Time Elapse: 344.0
-Optimal Value: 6.0
+Time Elapse: 343.0
+Optimal Value: 5.0
 Total function call: 151

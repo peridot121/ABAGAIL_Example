@@ -1,8 +1,8 @@
-1.0
-1.0
+3.0
+3.0
 
 Problem: four_peaks
 Algorithm: SA55
-Time Elapse: 152.0
-Optimal Value: 1.0
+Time Elapse: 58.0
+Optimal Value: 3.0
 Total function call: 4

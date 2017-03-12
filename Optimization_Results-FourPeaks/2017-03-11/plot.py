@@ -4,9 +4,6 @@ import pandas as pd
 import os
 import matplotlib.pyplot as plt
 
-# Use this to set mean somehow
-#df.ix[(df.algorithm == 'MIMIC200') & (df.iterations == 1)]['optimal']
-
 if __name__=="__main__":
     target = sys.argv[1]
     if target == 'time':

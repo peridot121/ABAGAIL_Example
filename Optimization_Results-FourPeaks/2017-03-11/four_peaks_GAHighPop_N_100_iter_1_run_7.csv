@@ -1,8 +1,8 @@
-1.735
-3.41
+1.7133333333333334
+2.9816666666666665
 
 Problem: four_peaks
 Algorithm: GAHighPop
-Time Elapse: 499.0
+Time Elapse: 279.0
 Optimal Value: 9.0
-Total function call: 410
+Total function call: 1443
