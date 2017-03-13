@@ -1,0 +1,2 @@
+train/test, algorithm, correct,  incorrect,       %correct,       train-time secs, test-time secs, iterations
+train,      SA,        34.0,     3639.0,          0.926,          0.837,           0.139,          10

@@ -472,8 +472,8 @@ public class WhiteWine {
         }
 
         oa[0] = new RandomizedHillClimbing(nnop[0]);
-        oa[1] = new SimulatedAnnealing(1E11, .95, nnop[1]);
-        oa[2] = new StandardGeneticAlgorithm(200, 100, 10, nnop[2]);
+        oa[1] = new SimulatedAnnealing(1E5, .992, nnop[1]);
+        oa[2] = new StandardGeneticAlgorithm(600, 500, 100, nnop[2]);
         for(int i = 0; i < oa.length; i++) {
             for (int k = 0; k < trainingIterations.length; k++) {
                 new WhiteWineTest(

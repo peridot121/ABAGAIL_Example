@@ -285,12 +285,12 @@ public class FourPeaksOptimizationTest {
         four_peaks_test_params.put("SA95_initial_temperature",1E11);
         four_peaks_test_params.put("SA55_cooling_factor",.55);
         four_peaks_test_params.put("SA75_cooling_factor",.75);
-        four_peaks_test_params.put("SA95_cooling_factor",.95);
-        four_peaks_test_params.put("GAHigh_population",200.);
-        four_peaks_test_params.put("GAHigh_mate_number",100.);
-        four_peaks_test_params.put("GAHigh_mutate_number",10.);
-        four_peaks_test_params.put("GALow_population",200.);
-        four_peaks_test_params.put("GALow_mate_number",100.);
+        four_peaks_test_params.put("SA95_cooling_factor",.983);
+        four_peaks_test_params.put("GAHigh_population",600.);
+        four_peaks_test_params.put("GAHigh_mate_number",400.);
+        four_peaks_test_params.put("GAHigh_mutate_number",60.);
+        four_peaks_test_params.put("GALow_population",100.);
+        four_peaks_test_params.put("GALow_mate_number",75.);
         four_peaks_test_params.put("GALow_mutate_number",10.);
         four_peaks_test_params.put("MIMIC200_samples",200.);
         four_peaks_test_params.put("MIMIC200_to_keep",20.);

@@ -1,13 +1,15 @@
 #!/bin/bash
-file="$1"
+
 algorithms='GA RHC SA Backprop'
+targets='time optimal'
 
-if [ $# -ne 1 ] ; then
-  echo "Must provide filename"
-  exit 1
-fi
-
-for algorithm in $algorithms ; do
-    echo "percent-correct,iterations" > ${algorithm}.csv
-    grep $algorithm $file | awk '{print $4","$7}'>>${algorithm}.csv
+for target in $targets ; do
+    echo "algorithm,iterations,${target}" > ${target}.csv
+    for algorithm in $algorithms ; do
+        if [ "$target" == "time" ] ; then
+            grep $algorithm final_results.csv| awk '{print $1,$7,$5}'|sort -n -k2,2|tr " " ",">>${target}.csv
+        else #optimal
+            grep $algorithm final_results.csv| awk '{print $1,$7,$4}'|sort -n -k2,2|tr " " ",">>${target}.csv
+        fi
+    done
 done

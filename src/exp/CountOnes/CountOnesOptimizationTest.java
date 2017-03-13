@@ -128,42 +128,92 @@ class Analyze_Optimization_Test implements Runnable {
                     optimal_value = ef.value(rhc.getOptimal());
                     break;
 
-                case "SA":
-                    SimulatedAnnealing sa = new SimulatedAnnealing(
-                            (double) params.get("SA_initial_temperature"),
-                            (double) params.get("SA_cooling_factor"),
+                case "SA55":
+                    SimulatedAnnealing sa55 = new SimulatedAnnealing(
+                            (double) params.get("SA55_initial_temperature"),
+                            (double) params.get("SA55_cooling_factor"),
                             hcp
                     );
                     for (int i = 0; i <= this.iterations; i++) {
-                        results += sa.train() + "\n";
+                        results += sa55.train() + "\n";
                     }
-                    optimal_value = ef.value(sa.getOptimal());
+                    optimal_value = ef.value(sa55.getOptimal());
+                    break;
+
+                case "SA75":
+                    SimulatedAnnealing sa75 = new SimulatedAnnealing(
+                            (double) params.get("SA75_initial_temperature"),
+                            (double) params.get("SA75_cooling_factor"),
+                            hcp
+                    );
+                    for (int i = 0; i <= this.iterations; i++) {
+                        results += sa75.train() + "\n";
+                    }
+                    optimal_value = ef.value(sa75.getOptimal());
+                    break;
+
+                case "SA95":
+                    SimulatedAnnealing sa95 = new SimulatedAnnealing(
+                            (double) params.get("SA95_initial_temperature"),
+                            (double) params.get("SA95_cooling_factor"),
+                            hcp
+                    );
+                    for (int i = 0; i <= this.iterations; i++) {
+                        results += sa95.train() + "\n";
+                    }
+                    optimal_value = ef.value(sa95.getOptimal());
                     break;
 
                 case "GA":
-                    StandardGeneticAlgorithm ga = new StandardGeneticAlgorithm(
-                            ((Double) params.get("GA_population")).intValue(),
-                            ((Double) params.get("GA_mate_number")).intValue(),
-                            ((Double) params.get("GA_mutate_number")).intValue(),
+                    StandardGeneticAlgorithm galow = new StandardGeneticAlgorithm(
+                            ((Double) params.get("GALow_population")).intValue(),
+                            ((Double) params.get("GALow_mate_number")).intValue(),
+                            ((Double) params.get("GALow_mutate_number")).intValue(),
                             gap
                     );
                     for (int i = 0; i <= this.iterations; i++) {
-                        results += ga.train() + "\n";
+                        results += galow.train() + "\n";
                     }
-                    optimal_value = ef.value(ga.getOptimal());
+                    optimal_value = ef.value(galow.getOptimal());
+                    break;
+
+                case "GAHighPop":
+                    StandardGeneticAlgorithm gahigh = new StandardGeneticAlgorithm(
+                            ((Double) params.get("GAHigh_population")).intValue(),
+                            ((Double) params.get("GAHigh_mate_number")).intValue(),
+                            ((Double) params.get("GAHigh_mutate_number")).intValue(),
+                            gap
+                    );
+                    for (int i = 0; i <= this.iterations; i++) {
+                        results += gahigh.train() + "\n";
+                    }
+                    optimal_value = ef.value(gahigh.getOptimal());
+                    break;
+
+                case "MIMIC200":
+                    MIMIC mimic200 = new MIMIC(
+                            ((Double) params.get("MIMIC200_samples")).intValue(),
+                            ((Double) params.get("MIMIC200_to_keep")).intValue(),
+                            pop
+                    );
+                    results = "";
+                    for (int i = 0; i <= this.iterations; i++) {
+                        results += mimic200.train() + "\n";
+                    }
+                    optimal_value = ef.value(mimic200.getOptimal());
                     break;
 
                 case "MIMIC":
-                    MIMIC mimic = new MIMIC(
+                    MIMIC mimic50 = new MIMIC(
                             ((Double) params.get("MIMIC_samples")).intValue(),
                             ((Double) params.get("MIMIC_to_keep")).intValue(),
                             pop
                     );
                     results = "";
                     for (int i = 0; i <= this.iterations; i++) {
-                        results += mimic.train() + "\n";
+                        results += mimic50.train() + "\n";
                     }
-                    optimal_value = ef.value(mimic.getOptimal());
+                    optimal_value = ef.value(mimic50.getOptimal());
                     break;
             }
             elapsedTime = System.currentTimeMillis() - start;
@@ -172,7 +222,8 @@ class Analyze_Optimization_Test implements Runnable {
                     "Problem: " + this.problem + "\n" +
                     "Algorithm: " + this.algorithm + "\n" +
                     "Time Elapse: " + elapsedTime +"\n"+
-                    "Optimal Value: " + optimal_value + "\n";
+                    "Optimal Value: " + optimal_value + "\n" +
+                    "Total function call: " + ef.getFunctionCallCount();
             String final_result = "";
             final_result =
                     this.problem + "," +
@@ -180,6 +231,7 @@ class Analyze_Optimization_Test implements Runnable {
                             this.N + "," +
                             this.iterations + "," +
                             this.run + "," +
+                            ef.getFunctionCallCount() + "," +
                             optimal_value + "," +
                             elapsedTime;
             write_output_to_file(this.other_params.get("output_folder"), "final_results.csv", final_result, true);
@@ -214,17 +266,26 @@ public class CountOnesOptimizationTest {
 
         //Count Ones Test
         HashMap<String, Object> count_one_test_params = new HashMap<>();
-        count_one_test_params.put("SA_initial_temperature",1E3);
-        count_one_test_params.put("SA_cooling_factor",.95);
-        count_one_test_params.put("GA_population",20.);
-        count_one_test_params.put("GA_mate_number",20.);
-        count_one_test_params.put("GA_mutate_number",1.);
+        count_one_test_params.put("SA55_initial_temperature",1E11);
+        count_one_test_params.put("SA55_cooling_factor",.55);
+        count_one_test_params.put("SA75_initial_temperature",1E11);
+        count_one_test_params.put("SA75_cooling_factor",.75);
+        count_one_test_params.put("SA95_initial_temperature",1E11);
+        count_one_test_params.put("SA95_cooling_factor",.983);
+        count_one_test_params.put("GAHigh_population",600.);
+        count_one_test_params.put("GAHigh_mate_number",400.);
+        count_one_test_params.put("GAHigh_mutate_number",60.);
+        count_one_test_params.put("GALow_population",100.);
+        count_one_test_params.put("GALow_mate_number",75.);
+        count_one_test_params.put("GALow_mutate_number",10.);
+        count_one_test_params.put("MIMIC200_samples",200.);
+        count_one_test_params.put("MIMIC200_to_keep",20.);
         count_one_test_params.put("MIMIC_samples",50.);
-        count_one_test_params.put("MIMIC_to_keep",10.);
+        count_one_test_params.put("MIMIC_to_keep",5.);
 
-        int[] N = {20,40,60,80,100, 150, 200, 300, 500, 1000};
-        int[] iterations = {500};
-        String[] algorithms = {"SA", "GA", "RHC", "MIMIC"};
+        int[] N = {200};
+        int[] iterations = {1, 50, 100, 150, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1500, 2000, 2500, 3000};
+        String[] algorithms = {"RHC", "SA55", "SA75", "SA95", "GA", "MIMIC"};
         for (int i = 0; i < algorithms.length; i++) {
             for (int j = 0; j < N.length; j++) {
                 for (int k = 0; k < iterations.length; k++) {
